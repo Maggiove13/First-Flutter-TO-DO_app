@@ -6,7 +6,7 @@ class QuotesScreen extends StatefulWidget {
   const QuotesScreen({Key? key}) : super(key: key);
 
   @override
-  _QuotesScreenState createState() => _QuotesScreenState();
+  State<QuotesScreen> createState() => _QuotesScreenState();
 }
 
 class _QuotesScreenState extends State<QuotesScreen> {

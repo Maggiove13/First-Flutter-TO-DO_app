@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Mi App',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
+          seedColor: const Color.fromARGB(255, 29, 95, 39),
           brightness: Brightness.light,
         ),
         useMaterial3: true,

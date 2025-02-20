@@ -7,9 +7,15 @@ import 'screens/quotes.dart';
 late SharedPreferences prefs;
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  prefs = await SharedPreferences.getInstance();
-  runApp(const MyApp());
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    prefs = await SharedPreferences.getInstance();
+    runApp(const MyApp());
+  } catch (e) {
+    print('Error inicializando la app: $e');
+    // Inicializar la app incluso si hay error con SharedPreferences
+    runApp(const MyApp());
+  }
 }
 
 class MyApp extends StatelessWidget {

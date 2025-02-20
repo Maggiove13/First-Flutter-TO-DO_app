@@ -24,34 +24,39 @@ class _TodoListScreenState extends State<TodoListScreen> {
   // Cargar tareas desde SharedPreferences
   Future<void> _loadTasks() async {
     try {
+      if (!mounted) return; // Verificamos si el widget está montado
+
       final String? tasksJson = prefs.getString(_storageKey);
       print('Cargando tareas: $tasksJson');
 
       if (tasksJson != null) {
         final List<dynamic> decoded = json.decode(tasksJson);
-        setState(() {
-          _tasks.clear();
-          _tasks.addAll(decoded.cast<String>());
-        });
+        if (mounted) {
+          // Verificamos nuevamente antes de setState
+          setState(() {
+            _tasks.clear();
+            _tasks.addAll(decoded.cast<String>());
+          });
+        }
         print('Tareas cargadas: $_tasks');
       }
     } catch (e) {
       print('Error al cargar tareas: $e');
+      // No lanzamos el error, solo lo registramos
     }
   }
 
   // Guardar tareas en SharedPreferences
   Future<void> _saveTasks() async {
     try {
+      if (!mounted) return; // Verificamos si el widget está montado
+
       final String tasksJson = json.encode(_tasks);
       await prefs.setString(_storageKey, tasksJson);
       print('Tareas guardadas: $tasksJson');
-
-      // Verificación adicional
-      final saved = prefs.getString(_storageKey);
-      print('Verificación de guardado: $saved');
     } catch (e) {
       print('Error al guardar tareas: $e');
+      // No lanzamos el error, solo lo registramos
     }
   }
 

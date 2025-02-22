@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'dart:math';
 
 class QuotesScreen extends StatefulWidget {
-  const QuotesScreen({Key? key}) : super(key: key);
+  const QuotesScreen({super.key});
 
   @override
   State<QuotesScreen> createState() => _QuotesScreenState();
@@ -49,7 +49,8 @@ class _QuotesScreenState extends State<QuotesScreen> {
 
   void _useBackupQuote() {
     setState(() {
-      _quote = _predefinedQuotes[_random.nextInt(_predefinedQuotes.length)];
+      final int randomLength = _predefinedQuotes.length;
+      _quote = _predefinedQuotes[_random.nextInt(randomLength)];
     });
   }
 

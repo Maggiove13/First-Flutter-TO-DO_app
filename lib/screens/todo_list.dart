@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
+import 'dart:convert'; // para convertir datos JSON (se usa para guardar y recuperar tareas en SharedPreferences).
 import '../main.dart'; // Importamos main.dart para acceder a prefs
 
 class TodoListScreen extends StatefulWidget {
@@ -26,16 +26,23 @@ class _TodoListScreenState extends State<TodoListScreen> {
     try {
       if (!mounted) return; // Verificamos si el widget está montado
 
-      final String? tasksJson = prefs.getString(_storageKey);
+      //tasksJson puede recibir valor nulo
+      final String? tasksJson = prefs.getString(
+        _storageKey,
+      ); // es un String en formato JSON
       print('Cargando tareas: $tasksJson');
 
       if (tasksJson != null) {
-        final List<dynamic> decoded = json.decode(tasksJson);
+        final List<dynamic> decoded = json.decode(
+          tasksJson,
+        ); // convierte el String JSON en una estructura de Dart
         if (mounted) {
           // Verificamos nuevamente antes de setState
           setState(() {
-            _tasks.clear();
-            _tasks.addAll(decoded.cast<String>());
+            _tasks.clear(); // para evitar duplicados
+            _tasks.addAll(
+              decoded.cast<String>(),
+            ); // convertir a una lista de strings
           });
         }
         print('Tareas cargadas: $_tasks');
@@ -51,12 +58,13 @@ class _TodoListScreenState extends State<TodoListScreen> {
     try {
       if (!mounted) return; // Verificamos si el widget está montado
 
-      final String tasksJson = json.encode(_tasks);
+      final String tasksJson = json.encode(
+        _tasks,
+      ); // Ahora es una cadena de texto (String) en formato JSON
       await prefs.setString(_storageKey, tasksJson);
       print('Tareas guardadas: $tasksJson');
     } catch (e) {
       print('Error al guardar tareas: $e');
-      // No lanzamos el error, solo lo registramos
     }
   }
 
@@ -68,9 +76,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
         _controller.clear();
       });
       await _saveTasks(); // Guardar después de añadir
-      print(
-        'Tarea añadida. Total de tareas: ${_tasks.length}',
-      ); // Log para debug
+      print('Tarea añadida. Total de tareas: ${_tasks.length}');
     }
   }
 
@@ -80,12 +86,10 @@ class _TodoListScreenState extends State<TodoListScreen> {
       _tasks.removeAt(index);
     });
     await _saveTasks(); // Guardar después de eliminar
-    print(
-      'Tarea eliminada. Tareas restantes: ${_tasks.length}',
-    ); // Log para debug
+    print('Tarea eliminada. Tareas restantes: ${_tasks.length}');
   }
 
-  // Añadir este método a la clase _TodoListScreenState
+  //Eliminar todas las tareas
   Future<void> _clearTasks() async {
     try {
       await prefs.remove(_storageKey);
@@ -116,6 +120,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
+                //Expanded es un widget que expande su hijo
                 Expanded(
                   child: TextField(
                     controller: _controller,

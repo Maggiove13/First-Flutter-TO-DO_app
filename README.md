@@ -74,3 +74,58 @@ For now, the app has a default theme, but you can customise it in future updates
 - Keep your list up to date**: Delete tasks that you have already completed.
 - Use the motivational phrases**: Hit the ‘New Phrase’ button when you need a motivational boost.
 - Explore all the features**: Feel free to try out all the options the app has to offer.
+
+---
+## **How to build the application for Android and iPhone**.
+
+##### If you want to build the app for Android or iPhone, follow these steps:
+
+#### **1. Pre-requisites**
+- Flutter installed**: Make sure you have Flutter installed on your computer. If you don't have it, follow the instructions at [flutter.dev](https://flutter.dev).
+- Android Studio (for Android)**: You need Android Studio to set up the Android development environment.
+- Xcode (for iPhone)**: You need Xcode installed on a Mac to build the iPhone app.
+
+---
+
+#### **2. Build for Android**
+1. Open a terminal in your project folder.
+2. Connect an Android device or open an emulator.
+3. Run the following command:
+   ````bash Copy
+   flutter build apk
+   ````
+This will generate an .apk file in the build/app/outputs/apk/release/ folder.
+
+4. **To install the application on your device:**
+
+    1. **Enable developer mode**:
+       - Go to **Settings** > **About phone**.
+       - Tap **Build number** 7 times to enable developer mode.
+    2. **Enable USB debugging**:
+       - Go to **Settings** > **Developer options** > Enable **USB debugging**.
+    3. **Connect your phone to your computer**:
+       - Use a USB cable that allows data transfer.
+    4. **Run the application for test**:
+       - Open a terminal in your project folder and run:
+         ````bash
+         flutter run
+         `````
+       - The application will install and run on your phone.
+---
+#### **3. Build for iPhone**
+1. Open a terminal in your project folder.
+
+2. Connect an iPhone device or open a simulator from Xcode.
+
+3. Run the following command:
+
+    ````bash Copy
+    flutter build ios
+    ````
+4. Open the project in Xcode:
+
+    ````bash Copy
+    open ios/Runner.xcworkspace
+    ````
+5. In Xcode, select your device or simulator and press the ‘Run’ button (▶️).
+

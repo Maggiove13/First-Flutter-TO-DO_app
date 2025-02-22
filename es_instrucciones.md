@@ -56,3 +56,59 @@ Por ahora, la aplicación tiene un tema predeterminado, pero puedes personalizar
 - **Mantén tu lista actualizada**: Elimina las tareas que ya hayas completado.
 - **Usa las frases motivadoras**: Presiona el botón de "Nueva Frase" cuando necesites un impulso de motivación.
 - **Explora todas las funciones**: No dudes en probar todas las opciones que ofrece la aplicación.
+
+
+---
+## **Cómo construir la aplicación para Android y iPhone**.
+
+##### Si quieres construir la aplicación para Android o iPhone, sigue estos pasos:
+
+#### **1. Requisitos previos**
+- Flutter instalado**: Asegúrate de que tienes Flutter instalado en tu ordenador. Si no lo tienes, sigue las instrucciones en [flutter.dev](https://flutter.dev).
+- Android Studio (para Android)**: Necesitas Android Studio para configurar el entorno de desarrollo de Android.
+- Xcode (para iPhone)**: Necesitas tener Xcode instalado en un Mac para crear la aplicación para iPhone.
+
+---
+
+#### **2. Construir para Android**
+1. Abre un terminal en la carpeta de tu proyecto.
+2. Conecta un dispositivo Android o abre un emulador.
+3. Ejecuta el siguiente comando:
+   ````bash Copiar
+   flutter build apk
+   ````
+Esto generará un archivo .apk en la carpeta build/app/outputs/apk/release/.
+
+4. **Para instalar la aplicación en tu dispositivo:**
+
+    1. **Activa el modo desarrollador**:
+       - Ve a **Configuración** > **Acerca del teléfono**.
+       - Toca **Número de compilación** 7 veces para activar el modo desarrollador.
+    2. **Activar la depuración USB**:
+       - Ve a **Configuración** > **Opciones de desarrollador** > Activar **Depuración USB**.
+    3. **Conecta el teléfono al ordenador**:
+       - Utiliza un cable USB que permita la transferencia de datos.
+    4. **Ejecuta la aplicación de prueba**:
+       - Abre un terminal en la carpeta de tu proyecto y ejecuta:
+         ````bash
+         flutter run
+         `````
+       - La aplicación se instalará y ejecutará en tu teléfono.
+    
+---
+#### **3. Construir para iPhone**
+1. Abre un terminal en la carpeta de tu proyecto.
+
+2. Conecta un dispositivo iPhone o abre un simulador desde Xcode.
+
+3. Ejecuta el siguiente comando:
+
+    ````bash Copiar
+    flutter build ios
+    ````
+4. Abre el proyecto en Xcode:
+
+    ````bash Copiar
+    open ios/Runner.xcworkspace
+    ````
+5. En Xcode, selecciona tu dispositivo o simulador y pulsa el botón «Run» (▶️).
